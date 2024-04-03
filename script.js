@@ -2,6 +2,10 @@ function setAlert(message) {
   document.getElementById("alert").textContent = message;
 }
 
+function setCreditCardType(type) {
+  document.getElementById("cardDetail").textContent = type;
+}
+
 document.getElementById("creditcard").addEventListener("change", validation);
 
 function validation(e) {
@@ -30,6 +34,17 @@ function validation(e) {
 
     if (sum % 10 === 0) {
       setAlert("Credit card number is valid");
+
+      // check the type of credit card
+      if (data.startsWith("4")) {
+        setCreditCardType("Credit card type: Visa");
+      } else if (data.startsWith("5")) {
+        setCreditCardType("Credit card type: Mastercard");
+      } else if (data.startsWith("6")) {
+        setCreditCardType("Credit card type: Discover");
+      } else {
+        setCreditCardType("Credit card type: Unknown");
+      }
     } else {
       setAlert("Credit card number is invalid");
     }
